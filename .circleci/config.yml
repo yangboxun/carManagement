@@ -7,5 +7,16 @@ jobs:
       only:
         - Realease
     steps:
+      - add_ssh_key:
+          fingerprints:
+         - "69:b8:2e:55:6b:7f:22:3f:9b:b4:b2:40:a3:9b:91:b0"
       - checkout # check out the code in the project directory
-      - run: echo "hello world" # run the `echo` command
+      - run:
+          name: Install
+          command: yarn install
+      - run:
+          name: Prepare shell commands
+          command: chomd +x script/deploy.sh
+      - run:
+          name: Run deploy to github pages
+          command: ./script/deploy.sh
