@@ -16,7 +16,7 @@ jobs:
           command: yarn install
       - run:
           name: Prepare shell commands
-          command: chomd +x script/deploy.sh
+          command: chmod +x script/deploy.sh
       - run:
           name: Run deploy to github pages
           command: ./script/deploy.sh
