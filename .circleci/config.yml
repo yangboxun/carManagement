@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: cimg/node:14.10.1 # the primary container, where your job's commands are run
     branches:
-      only: 
+      only:
         - Realease
     steps:
       - checkout # check out the code in the project directory
