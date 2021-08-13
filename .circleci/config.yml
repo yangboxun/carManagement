@@ -21,6 +21,9 @@ jobs:
           paths:
             - node_modules
       - run:
+          name: Build
+          command: yarn build
+      - run:
           name: Prepare shell commands
           command: chmod +x scripts/deploy.sh
       - run:
