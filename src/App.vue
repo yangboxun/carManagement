@@ -1,20 +1,26 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <Layout></Layout>
   </div>
 </template>
 
+<script lang="ts">
+import Layout from '@/layout/default.vue'
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component({
+  components: {
+    Layout
+  }
+})
+export default class App extends Vue {}
+</script>
+
 <style>
-#app {
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
 #nav {
@@ -28,5 +34,5 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>
