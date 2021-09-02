@@ -1,7 +1,7 @@
 <template>
-    <div style="background: #fff; padding: 16px">
-      <slot></slot>
-    </div>
+  <div style="background: #fff; padding: 16px">
+    <slot />
+  </div>
 </template>
 
 <script lang="ts">
