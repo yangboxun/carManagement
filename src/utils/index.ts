@@ -10,6 +10,10 @@ const setToken = (token: string) =>{
   Cookie.set('Y_token',token, { expires: 1 })
 }
 
+const calToken = () =>{
+  Cookie.remove('Y_token')
+}
+
 
 const regexp = {
   phone: /^1(3|4|5|6|7|8|9)\d{9}$/

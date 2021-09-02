@@ -7,8 +7,9 @@
       >
         <el-menu
           v-model="isCollapse"
+          router
           :collapse="isCollapse"
-          default-active="2"
+          :default-active="defaultActive"
           class="el-menu-vertical"
           background-color="#333"
           text-color="#fff"
@@ -21,53 +22,17 @@
             <i class="el-icon-s-unfold" />
           </div>
           <el-menu-item
-            index="2"
-            @click.native="$router.push('/orderManage')"
+
+            v-for="item of menuList"
+            :key="item.link"
+            :index="item.link"
           >
-            <i class="el-icon-document" />
-            <span slot="title">货单管理</span>
-          </el-menu-item>
-          <el-menu-item
-            index="3"
-            @click.native="$router.push('/goodManage')"
-          >
-            <i class="el-icon-goods" />
-            <span slot="title">货品管理</span>
-          </el-menu-item>
-          <el-menu-item
-            index="4"
-            @click.native="$router.push('/carTeamManage')"
-          >
-            <i class="el-icon-truck" />
-            <span slot="title">车队管理</span>
-          </el-menu-item>
-          <el-menu-item
-            index="5"
-            @click.native="$router.push('/carManage')"
-          >
-            <i class="el-icon-bicycle" />
-            <span slot="title">车辆管理</span>
-          </el-menu-item>
-          <el-menu-item
-            index="6"
-            @click.native="$router.push('/startAdressManage')"
-          >
-            <i class="el-icon-school" />
-            <span slot="title">出发地管理</span>
-          </el-menu-item>
-          <el-menu-item
-            index="7"
-            @click.native="$router.push('/endAdressManage')"
-          >
-            <i class="el-icon-office-building" />
-            <span slot="title">目的地管理</span>
+            <i :class="item.icon" />
+            <span slot="title">{{ item.menuName }}</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
       <el-container :style="{width: isCollapse?'calc(100vw - 64px)':'calc(100vw - 200px)'}">
-        <el-header style="height: 45px; line-height: 45px; background:#333">
-          Header
-        </el-header>
         <el-main style="background: #f5f5f5">
           <router-view />
         </el-main>
@@ -81,6 +46,47 @@ import { Vue, Component } from 'vue-property-decorator'
 @Component({})
 export default class Layout extends Vue {
   isCollapse = false
+
+  menuList = [
+    {
+      code: 'orderManage',
+      menuName: '货单管理',
+      link: '/orderManage',
+      icon: 'el-icon-s-unfold'
+    },
+    {
+      code: 'goodManage',
+      menuName: '货品管理',
+      link: '/goodManage',
+      icon: 'el-icon-goods'
+    },
+    {
+      code: 'carTeamManage',
+      menuName: '车队管理',
+      link: '/carTeamManage',
+      icon: 'el-icon-truck'
+    },
+    {
+      code: 'carManage',
+      menuName: '车辆管理',
+      link: '/carManage',
+      icon: 'el-icon-bicycle'
+    },{
+      code: 'startAdressManage',
+      menuName: '出发地管理',
+      link: '/startAdressManage',
+      icon: 'el-icon-school'
+    },{
+      code: 'endAdressManage',
+      menuName: '目的地管理',
+      link: '/endAdressManage',
+      icon: 'el-icon-office-building'
+    }
+  ]
+
+  get defaultActive(){
+    return this.$route.path
+  }
 }
 </script>
 
@@ -99,7 +105,7 @@ export default class Layout extends Vue {
     height: 45px;
     line-height: 45px;
     color: #fff;
-    border-bottom: 1px solid #f5f5f5;
+    border-bottom: 1px solid #666;
     i {
       cursor: pointer;
     }

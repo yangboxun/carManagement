@@ -47,10 +47,14 @@ const routes: Array<RouteConfig> = [
       },
     ]
   },
+  {
+    path: '*',
+    component: () => import(/* webpackChunkName: "about" */ '../views/error.vue')
+  }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

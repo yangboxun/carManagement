@@ -1,4 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import router from '@/router'
+
+import { Message, MessageBox } from 'element-ui'
 
 import utils from '@/utils'
 
@@ -30,7 +33,28 @@ class Axios {
 
     axiosInstance.interceptors.response.use((res: AxiosResponse)=>{
       if(res.status === 200){
-        return Promise.resolve(res.data)
+        if(res.data.code === 101) {
+          MessageBox.confirm('管理员未登录，请先登录', '提示', {
+            confirmButtonText: '确定',
+            showCancelButton: false,
+            type: 'warning'
+          }).then(() => {
+            router.push('/login')
+          })
+          return Promise.reject(res)
+        } else if(res.data.code === 102){
+          MessageBox.confirm('您的登陆已经过期，请重新登陆', '提示', {
+            confirmButtonText: '确定',
+            showCancelButton: false,
+            type: 'warning'
+          }).then(() => {
+            router.push('/login')
+          })
+          return Promise.reject(res)
+        } else {
+          return Promise.resolve(res.data)
+        }
+
       } else {
         return Promise.reject(res)
       }

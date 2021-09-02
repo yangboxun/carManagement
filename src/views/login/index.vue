@@ -86,6 +86,7 @@ export default {
     }
   },
   mounted() {
+    if(utils.getToken())utils.calToken()
     if (this.loginForm.account === '') {
       this.$refs.account.focus()
     } else if (this.loginForm.password === '') {
@@ -107,7 +108,7 @@ export default {
       this.$refs.loginForm.validate(async valid => {
         if (valid) {
           this.loading = true
-          const { massage: message, result, code } = await login(this.loginForm)
+          const { message, result, code } = await login(this.loginForm)
           if(code === 1){
             utils.setToken(result)
             this.$message({
