@@ -13,6 +13,13 @@ export const getCarList = (params: Page & { number_plate: string; motorcade_id: 
   })
 )
 
+export const getCarOptions = ()=>(
+  axios.request({
+    url: '/car/getCar',
+    method: 'get',
+  })
+)
+
 export const addCar = (params: { number_plate: string;motorcade_id: number|string;driver_name: string;driver_phone: string})=>(
   axios.request({
     url: '/car/add',

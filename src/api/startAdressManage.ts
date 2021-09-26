@@ -13,6 +13,13 @@ export const getStartadressList = (params: Page & { outset_name: string })=>(
   })
 )
 
+export const getStartAdressOptions = ()=>(
+  axios.request({
+    url: '/site/getOutset',
+    method: 'get',
+  })
+)
+
 export const addStartadress = (params: { outset_name: string;outset_p_name?: string;outset_p_phone?: string })=>(
   axios.request({
     url: '/site/outsetAdd',

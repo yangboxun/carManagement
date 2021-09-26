@@ -13,6 +13,13 @@ export const getGoodsList = (params: Page & { goods_name: string })=>(
   })
 )
 
+export const getGoodOptions = ()=>(
+  axios.request({
+    url: '/goods/getGoods',
+    method: 'get',
+  })
+)
+
 export const addGoods = (params: { goods_name: string;})=>(
   axios.request({
     url: '/goods/add',
